@@ -15,7 +15,10 @@ function Setup() {
 
     // Disable movement
     setTimeout( ()=>{
-      document.querySelector('[camera]').removeAttribute('wasd-controls');
+      let camera = document.querySelector('[camera]')
+      camera.removeAttribute('wasd-controls');
+      camera.setAttribute(`cursor`, `rayOrigin: mouse`);
+      console.clear();
     }, 50);
   }
 }
@@ -122,6 +125,14 @@ class VRElement {
     else this.elem.setAttribute(`visible`, false);
   }
 
+  addEventListener(interaction, event) {
+    this.elem.addEventListener(interaction, event);
+  }
+
+  removeEventListener(interaction, event) {
+    this.elem.removeEventListener(interaction, event);
+  }
+
 }
 
 class VRText extends VRElement {
@@ -132,19 +143,18 @@ class VRText extends VRElement {
     this.color = `black`;
     this.setColor(this.color);
 
-    // Set visibility
-    this.setVisible(true);
-
     // Set align to center
     this.elem.setAttribute(`align`, `center`);
 
     // Save text if text is given
-    if(text !== null) {
-      this.setText(text);
-    } else console.warn(`Your VR_Text has been created.\nYou still need to set it's text by using: .setText(text)`);
+    if(text !== null) this.setText(text);
+    else console.warn(`Your VR_Text has been created.\nYou still need to set it's text by using: .setText(text)`);
 
+    // Set visibility
+    this.setVisible(true);
     // Call parent inheritance constructor
     super.setup();
+    this.setScale(5,5,5);
   }
 
   setText(text) {
@@ -166,19 +176,47 @@ class VRImage extends VRElement {
     // Create element
     this.elem = document.createElement(`a-image`);
 
+    // Check if image path is set correctly
+    if(path !== null) this.setImage(path);
+    else console.warn(`Your VR_Image has been created.\nYou still need to set the image's path by using: .setImage(pathToImage)`);
+
     // Set visibility
     this.setVisible(true);
-
-    // Check if image path is set correctly
-    if(path !== null) { this.setImage(path) }
-    else { console.warn(`Your VR_Image has been created.\nYou still need to set the image's path by using: .setImage(pathToImage)`); }
-
     // Call parent inheritance constructor
     super.setup();
   }
 
   setImage(path) {
     this.elem.setAttribute(`src`, path);
+  }
+
+}
+
+class VRModel extends VRElement {
+  constructor(model, material) {
+    super();
+    this.elem = document.createElement('a-obj-model');
+
+    if(model !== null) this.setModel(model);
+    else console.warn(`Your VR_Model has been created.\nYou still need to set the model's path by using: .setModel(pathToModel)`);
+
+    if(material !== null) this.setMaterial(material);
+    else console.warn(`Your VR_Model has been created.\nYou still need to set the model's material path by using: .setMaterial(pathToMaterial)`);
+
+    // Set visibility
+    this.setVisible(true);
+    // Call parent inheritance constructor
+    super.setup();
+  }
+
+  setModel(model) {
+    this.model = model;
+    this.elem.setAttribute('src', model);
+  }
+
+  setMaterial(material) {
+    this.material = material;
+    this.elem.setAttribute('mtl', material);
   }
 
 }
