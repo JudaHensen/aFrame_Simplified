@@ -1,4 +1,5 @@
 
+
 # A-FrameSimplified
 
 ### Documentation
@@ -6,6 +7,11 @@
 * [Master](https://github.com/JudaHensen/aFrame_Simplified/blob/main/documentation/aFrameSimplified_master.pdf) - Contains functions & descriptions.
 
 * [Mini](https://github.com/JudaHensen/aFrame_Simplified/blob/main/documentation/aFrameSimplified_functionsOnly.pdf) - Only contains functions.
+
+### Things to know before you start.
+If you need create & load text, images or 3D models when the scene loads, use the Setup function in app.js to create those elements. If you don't use the Setup function you might get errors that the scene is not being recognized or does not exist.
+
+Creating text, images or 3D models after the Setup function in app.js has been called works fine. \(The Setup function gets called on it's own. You should never have to call it yourself.\)
 
 ### Examples
 ##### *Create a 3D model*

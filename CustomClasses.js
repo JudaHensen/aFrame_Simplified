@@ -1,4 +1,4 @@
-function Setup() {
+function Config() {
   // add aFrame to the html
   let aFrame = document.createElement(`script`);
   aFrame.type = `text/javascript`;
@@ -19,6 +19,8 @@ function Setup() {
       camera.removeAttribute('wasd-controls');
       camera.setAttribute(`cursor`, `rayOrigin: mouse`);
       console.clear();
+
+      try { Setup(); } catch(err) {console.error("You should write a function to setup everything. Name it \"Setup\".")}
     }, 50);
   }
 }
