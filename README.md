@@ -13,6 +13,8 @@ If you need create & load text, images or 3D models when the scene loads, use th
 
 Creating text, images or 3D models after the Setup function in app.js has been called works fine. \(The Setup function gets called on it's own. You should never have to call it yourself.\)
 
+You should also use a server to run this software. You can use your ma-cloud for this or you can try local server software, such as MAMP, WAMP or XAMPP servers.
+
 ### Examples
 ##### *Create a 3D model*
 	// Create variables
