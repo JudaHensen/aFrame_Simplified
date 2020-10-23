@@ -17,7 +17,7 @@
 	material = "models/sampleCar/Shelby.mtl";
 
 	// Create the 3D model
-	car = new VRElement(model, material);
+	car = new VRModel(model, material);
 ##### *Create a 3D model by setting the model and material separately*
 	// Create variables
 	let model, material, car;
@@ -27,7 +27,7 @@
 	material = "models/sampleCar/Shelby.mtl";
 
 	// Create the 3D model
-	car = new VRElement();
+	car = new VRModel();
 
 	// Set the model and material
 	car.setModel(model);
